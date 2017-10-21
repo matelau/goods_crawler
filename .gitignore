@@ -1,11 +1,8 @@
 # The directory Mix will write compiled artifacts to.
 /api/_build
-
+/api/deps
 # If you run "mix test --cover", coverage assets end up here.
 /cover
-
-# The directory Mix downloads your dependencies sources to.
-/deps
 
 # Where 3rd-party dependencies like ExDoc output generated docs.
 /doc
