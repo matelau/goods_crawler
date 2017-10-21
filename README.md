@@ -1,5 +1,5 @@
-# ksl_crawler
-ksl_crawler project used to teach elixir
+# goods_crawler
+goods_crawler project used to teach elixir
 built with (elixir) [http://phoenixframework.org/]
 ________________________________________________
 ## Setup
