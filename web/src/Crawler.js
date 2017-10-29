@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Results from './Results';
+import { getCrawlResults } from './api';
+
 class Crawler extends Component {
   constructor() {
     super();
@@ -37,8 +39,9 @@ class Crawler extends Component {
     );
   }
   search() {
+    const resultsFromApi = getCrawlResults(this.state.search, 'craigslist');
     this.setState({
-      results: [...this.state.results, this.state.search],
+      results: [...this.state.results, resultsFromApi],
     });
   }
   updateInputValue(evt) {
