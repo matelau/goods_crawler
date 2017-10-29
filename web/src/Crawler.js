@@ -33,19 +33,26 @@ class Crawler extends Component {
           </div>
         </span>
         <div className="Crawler-results">
-          {results.length > 0 && results.map(r => <Results value={r} />)}
+          {results.length > 0 &&
+            results.map((r, v) => <Results value={r} key={v} />)}
         </div>
       </div>
     );
   }
-  search() {
+  async search() {
     try {
       const resultsFromApi = await getCrawlResults(
         this.state.search,
         'craigslist'
       );
+      console.log('Search');
+      console.log(resultsFromApi);
       this.setState({
-        results: [...this.state.results, resultsFromApi],
+        results: [
+          ...this.state.results,
+          resultsFromApi.search,
+          resultsFromApi.site,
+        ],
       });
     } catch (error) {
       console.log(error);
