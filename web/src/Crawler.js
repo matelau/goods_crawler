@@ -9,6 +9,7 @@ class Crawler extends Component {
     };
   }
   render() {
+    const results = this.state.results;
     return (
       <div class="Crawler-search">
         <span>
@@ -26,8 +27,9 @@ class Crawler extends Component {
             </button>
           </div>
         </span>
+        // Loop over results and create a new li elements per result // //
         <div class="Crawler-results">
-          <li>{this.state.results}</li>
+          {results.length > 0 && results.map(r => <li> {r} </li>)}
         </div>
       </div>
     );
@@ -38,7 +40,6 @@ class Crawler extends Component {
     });
   }
   updateInputValue(evt) {
-    console.log(evt.target.value);
     this.setState({
       search: evt.target.value,
     });
