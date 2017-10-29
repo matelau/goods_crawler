@@ -1,6 +1,6 @@
 const API_HOST = process.env.REACT_APP_API_HOST;
 
-function makeUrl(url, queryObject) {
+async function makeUrl(url, queryObject) {
   const queryString = encodeURI(
     Object.entries(queryObject)
       .map(([key, value]) => `${key}=${value}`)
@@ -9,7 +9,7 @@ function makeUrl(url, queryObject) {
   return `${url}?${queryString}`;
 }
 
-function checkStatus(response) {
+async function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -18,14 +18,21 @@ function checkStatus(response) {
   throw error;
 }
 
-function parseJSON(response) {
+async function parseJSON(response) {
   return response.json();
 }
 
-export function getCrawlResults(search, site) {
-  const url = makeUrl(`${API_HOST}/crawl`, { search: search, site: site });
+function getHeaders() {
+  return {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+}
+
+export async function getCrawlResults(search, site) {
+  const url = makeUrl(`${API_HOST}/api/crawl`, { search: search, site: site });
   console.log(url);
-  return fetch(url)
+  return fetch(url, { mode: 'no-cors' })
     .then(checkStatus)
     .then(parseJSON);
 }

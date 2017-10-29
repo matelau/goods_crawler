@@ -39,10 +39,17 @@ class Crawler extends Component {
     );
   }
   search() {
-    const resultsFromApi = getCrawlResults(this.state.search, 'craigslist');
-    this.setState({
-      results: [...this.state.results, resultsFromApi],
-    });
+    try {
+      const resultsFromApi = await getCrawlResults(
+        this.state.search,
+        'craigslist'
+      );
+      this.setState({
+        results: [...this.state.results, resultsFromApi],
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
   updateInputValue(evt) {
     this.setState({
