@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Results from './Results';
 class Crawler extends Component {
   constructor() {
     super();
@@ -11,25 +11,27 @@ class Crawler extends Component {
   render() {
     const results = this.state.results;
     return (
-      <div class="Crawler-search">
+      <div className="Crawler-search">
         <span>
           Craigslist
-          <div class="Crawler-search-box">
+          <div className="Crawler-search-box">
             <input
               type="text"
               placeholder="Search"
               value={this.state.search}
               onChange={evt => this.updateInputValue(evt)}
-              class="Crawler-search-text"
+              className="Crawler-search-text"
             />
-            <button class="Crawler-search-submit" onClick={() => this.search()}>
+            <button
+              className="Crawler-search-submit"
+              onClick={() => this.search()}
+            >
               Crawl
             </button>
           </div>
         </span>
-        // Loop over results and create a new li elements per result // //
-        <div class="Crawler-results">
-          {results.length > 0 && results.map(r => <li> {r} </li>)}
+        <div className="Crawler-results">
+          {results.length > 0 && results.map(r => <Results value={r} />)}
         </div>
       </div>
     );
