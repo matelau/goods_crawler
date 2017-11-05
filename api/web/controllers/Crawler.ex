@@ -1,9 +1,8 @@
 defmodule Api.Crawler do
   use Api.Web, :controller
-
-  def crawl(conn, params) do
-    IO.inspect(conn)
-    IO.inspect(params)
-    send_resp(conn, 200, Poison.encode!(params))
+  alias Craigslist.{Client, Parser}
+  def crawl(conn, %{"search" => search}) do
+    results = Client.search(search) |> Parser.get_items
+    send_resp(conn, 200, Poison.encode!(results))
   end
 end

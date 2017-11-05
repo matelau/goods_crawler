@@ -12,7 +12,7 @@ defmodule Craigslist.Parser do
 
   end
   def get_title({"title", _, [title]}) do
-    title
+    %{title => title} 
   end
 
   def get_title(_), do: nil
